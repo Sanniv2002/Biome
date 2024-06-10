@@ -12,6 +12,6 @@ Biome's internal servers are loosely coupled and communicate using the [gRPC](ht
 # Meet Biome's Microservices and CRON Jobs.
 ![pikaso_texttoimage_minecraft-group-photo](https://github.com/Sanniv2002/Biome/assets/100380315/97814ea4-906f-40e1-8131-98ca6ab1b567)
 
-# Container Init Service
-![ender](https://github.com/Sanniv2002/Biome/assets/100380315/c153716e-8c11-45f6-b111-b99c2871187f)
+## Container Init Service
+![ender](https://github.com/Sanniv2002/Biome/assets/100380315/04288bb2-def8-461d-8a80-a045a6c698d5)
 Meet Biome's Container Conductor, the microservice with a mission! Just like an Enderman in Minecraft, this service is here to start and suspend containers with a touch of magic. You know how Endermen are always building and moving blocks around? Well, our microservice does the same—minus the creepy teleportation and block stealing.
