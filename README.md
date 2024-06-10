@@ -13,7 +13,7 @@ Biome's internal servers are loosely coupled and communicate using the [gRPC](ht
 ![archBackend](https://github.com/Sanniv2002/Biome/assets/100380315/8e81491e-6cae-4179-baba-08ee0b9768df)
 
 
-# Meet Biome's Microservices and CRON Jobs.
+## Meet Biome's Microservices and CRON Jobs.
 ![pikaso_texttoimage_minecraft-group-photo](https://github.com/Sanniv2002/Biome/assets/100380315/97814ea4-906f-40e1-8131-98ca6ab1b567)
 
 ## API Gateway
