@@ -20,7 +20,7 @@ func NewContainerHandler(grpcConn *grpc.ClientConn) *ContainerHandler {
 	}
 }
 
-func (h *ContainerHandler) StartContainer(c *gin.Context) {
+func (h *ContainerHandler) StartConfig(c *gin.Context) {
 	var req containerinit.StartContainerRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
@@ -36,14 +36,14 @@ func (h *ContainerHandler) StartContainer(c *gin.Context) {
 	c.JSON(http.StatusOK, resp)
 }
 
-func (h *ContainerHandler) KillContainer(c *gin.Context) {
-	var req containerinit.KillContainerRequest
+func (h *ContainerHandler) KillConfig(c *gin.Context) {
+	var req containerinit.KillConfigRequest
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	resp, err := h.grpcClient.KillContainer(context.Background(), &req)
+	resp, err := h.grpcClient.KillConfig(context.Background(), &req)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 		return

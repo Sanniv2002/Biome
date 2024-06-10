@@ -227,3 +227,33 @@ func (s *ContainerService) KillContainer(ctx context.Context, req *containerinit
 		Success: true,
 	}, nil
 }
+
+func (s *ContainerService) KillConfig(ctx context.Context, req *containerinit.KillConfigRequest) (*containerinit.KillConfigResponse, error) {
+	var wg sync.WaitGroup
+	conn, err := grpc.NewClient("localhost:50052", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	defer conn.Close()
+	client := store.NewStoreClient(conn)
+	configs, err := client.GetAllConfigs(ctx, &store.GetAllConfigsRequest{})
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+	for _, config := range configs.Configs {
+		if config.Alias == req.Alias {
+			for _, server := range config.Servers {
+				wg.Add(1)
+				go func(server *store.Server) {
+					defer wg.Done()
+					KillContainer(server.ContainerId)
+				}(server)
+				wg.Wait()
+			}
+			break
+		}
+	}
+	return &containerinit.KillConfigResponse{
+		Success: true,
+	}, nil
+}

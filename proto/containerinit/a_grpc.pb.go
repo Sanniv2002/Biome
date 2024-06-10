@@ -22,6 +22,7 @@ const (
 	ContainerInit_StartContainer_FullMethodName = "/containerinit.ContainerInit/StartContainer"
 	ContainerInit_ScaleContainer_FullMethodName = "/containerinit.ContainerInit/ScaleContainer"
 	ContainerInit_KillContainer_FullMethodName  = "/containerinit.ContainerInit/KillContainer"
+	ContainerInit_KillConfig_FullMethodName     = "/containerinit.ContainerInit/KillConfig"
 )
 
 // ContainerInitClient is the client API for ContainerInit service.
@@ -31,6 +32,7 @@ type ContainerInitClient interface {
 	StartContainer(ctx context.Context, in *StartContainerRequest, opts ...grpc.CallOption) (*StartContainerResponse, error)
 	ScaleContainer(ctx context.Context, in *ScaleContainerRequest, opts ...grpc.CallOption) (*ScaleContainerResponse, error)
 	KillContainer(ctx context.Context, in *KillContainerRequest, opts ...grpc.CallOption) (*KillContainerResponse, error)
+	KillConfig(ctx context.Context, in *KillConfigRequest, opts ...grpc.CallOption) (*KillConfigResponse, error)
 }
 
 type containerInitClient struct {
@@ -71,6 +73,16 @@ func (c *containerInitClient) KillContainer(ctx context.Context, in *KillContain
 	return out, nil
 }
 
+func (c *containerInitClient) KillConfig(ctx context.Context, in *KillConfigRequest, opts ...grpc.CallOption) (*KillConfigResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(KillConfigResponse)
+	err := c.cc.Invoke(ctx, ContainerInit_KillConfig_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ContainerInitServer is the server API for ContainerInit service.
 // All implementations must embed UnimplementedContainerInitServer
 // for forward compatibility
@@ -78,6 +90,7 @@ type ContainerInitServer interface {
 	StartContainer(context.Context, *StartContainerRequest) (*StartContainerResponse, error)
 	ScaleContainer(context.Context, *ScaleContainerRequest) (*ScaleContainerResponse, error)
 	KillContainer(context.Context, *KillContainerRequest) (*KillContainerResponse, error)
+	KillConfig(context.Context, *KillConfigRequest) (*KillConfigResponse, error)
 	mustEmbedUnimplementedContainerInitServer()
 }
 
@@ -93,6 +106,9 @@ func (UnimplementedContainerInitServer) ScaleContainer(context.Context, *ScaleCo
 }
 func (UnimplementedContainerInitServer) KillContainer(context.Context, *KillContainerRequest) (*KillContainerResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method KillContainer not implemented")
+}
+func (UnimplementedContainerInitServer) KillConfig(context.Context, *KillConfigRequest) (*KillConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method KillConfig not implemented")
 }
 func (UnimplementedContainerInitServer) mustEmbedUnimplementedContainerInitServer() {}
 
@@ -161,6 +177,24 @@ func _ContainerInit_KillContainer_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ContainerInit_KillConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(KillConfigRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ContainerInitServer).KillConfig(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ContainerInit_KillConfig_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ContainerInitServer).KillConfig(ctx, req.(*KillConfigRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ContainerInit_ServiceDesc is the grpc.ServiceDesc for ContainerInit service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -179,6 +213,10 @@ var ContainerInit_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "KillContainer",
 			Handler:    _ContainerInit_KillContainer_Handler,
+		},
+		{
+			MethodName: "KillConfig",
+			Handler:    _ContainerInit_KillConfig_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

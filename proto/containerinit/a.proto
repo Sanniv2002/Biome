@@ -7,6 +7,7 @@ service ContainerInit {
   rpc StartContainer (StartContainerRequest) returns (StartContainerResponse);
   rpc ScaleContainer (ScaleContainerRequest) returns (ScaleContainerResponse);
   rpc KillContainer (KillContainerRequest) returns (KillContainerResponse);
+  rpc KillConfig (KillConfigRequest) returns (KillConfigResponse);
 }
 
 message StartContainerRequest {
@@ -39,5 +40,13 @@ message KillContainerRequest {
 }
 
 message KillContainerResponse {
+  bool success = 1;
+}
+
+message KillConfigRequest {
+  string alias = 1;
+}
+
+message KillConfigResponse {
   bool success = 1;
 }

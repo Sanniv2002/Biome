@@ -10,6 +10,6 @@ import (
 func RegisterRoutes(r *gin.Engine, grpcConn *grpc.ClientConn) {
 	containerHandler := handlers.NewContainerHandler(grpcConn)
 
-	r.POST("/spawn", containerHandler.StartContainer)
-	r.DELETE("/kill", containerHandler.KillContainer)
+	r.POST("/spawn", containerHandler.StartConfig)
+	r.DELETE("/kill", containerHandler.KillConfig)
 }
