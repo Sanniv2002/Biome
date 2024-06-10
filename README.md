@@ -45,7 +45,7 @@ This vital component dynamically adjusts container instances, scaling up or down
 A vigilant guardian against unexpected crashes and shutdowns. This essential component monitors and swiftly restarts containers, ensuring uninterrupted operation and maintaining system reliability.
 
 ## Portal
-![pikaso_texttoimage_portal-minecraft](https://github.com/Sanniv2002/Biome/assets/100380315/d4937f02-85c3-43dc-a8da-f10dc8d2491a)
+![pikaso_texttoimage_35mm-film-photography-A-whimsical-cartoonstyle-por](https://github.com/Sanniv2002/Biome/assets/100380315/e0abb1c5-ae5f-4e0c-a54c-ad912cb897ef)
 
 Meet [Portal](https://github.com/Sanniv2002/Portal), Biome's dedicated load balancer. This essential component, powered by the Round Robin algorithm, ensures equitable distribution of workloads across all servers.
 
