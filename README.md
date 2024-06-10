@@ -31,16 +31,16 @@ Meet Biome's Container Conductor, the microservice with a mission! Just like an 
 
 Introducing the brain and memory warehouse of Biome, the esteemed cornerstone of Biome's operations! This service serves as the conductor of our centralized storage system, orchestrating the flow of data, CPU, memory stats, and retrieval of all vital information essential for keeping Biome in full swing. Without this repository, Biome would indeed be akin to a cosmic void—empty and directionless!
 
-## Monitoring Service
-![pikaso_texttoimage_Minecraft-Observer-with-scenic-view](https://github.com/Sanniv2002/Biome/assets/100380315/016db4ab-e259-4ad4-a46e-308aebeb29b8)
+## Monitoring CRON
+![pikaso_texttoimage_Minecraft-Observer-with-scenic-view](https://github.com/Sanniv2002/Biome/assets/100380315/155d8517-f387-44ff-8713-a41b58f467e0)
 
 The logging and monitoring system for container states. This essential component diligently oversees the status of all containers, ensuring operational efficiency and reliability.
 
-## Autoscaler Service
+## Autoscaler CRON
 
 This vital component dynamically adjusts container instances, scaling up or down based on their memory and CPU usage. Its primary function is to optimize resource allocation, ensuring efficient operation.
 
-## Recovery Service
+## Recovery CRON
 
 A vigilant guardian against unexpected crashes and shutdowns. This essential component monitors and swiftly restarts containers, ensuring uninterrupted operation and maintaining system reliability.
 
