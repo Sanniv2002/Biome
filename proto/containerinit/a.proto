@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+package containerinit;
+option go_package = "./containerinit";
+
+service ContainerInit {
+  rpc StartContainer (StartContainerRequest) returns (StartContainerResponse);
+  rpc ScaleContainer (ScaleContainerRequest) returns (ScaleContainerResponse);
+  rpc KillContainer (KillContainerRequest) returns (KillContainerResponse);
+}
+
+message StartContainerRequest {
+  string image = 1;
+  string tag = 2;
+  uint32 minContainers = 3;
+  uint32 maxContainers = 4;
+}
+
+message StartContainerResponse {
+  string containerId = 1;
+  uint32 containerPORT = 2;
+  uint32 hostPORT = 3;
+  string alias = 4;
+}
+
+message ScaleContainerRequest {
+  string alias = 1;
+  uint32 present = 2;
+  uint32 target = 3;
+  string image = 4;
+}
+
+message ScaleContainerResponse {
+  bool success = 1;
+}
+
+message KillContainerRequest {
+  string containerId = 1;
+}
+
+message KillContainerResponse {
+  bool success = 1;
+}

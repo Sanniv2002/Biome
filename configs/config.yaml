@@ -1,0 +1,3 @@
+api_port: ":8080"
+container_init_service_address: "0.0.0.0:50051"
+store_service_address: "0.0.0.0:50052"

@@ -1,0 +1,130 @@
+syntax="proto3";
+
+package store;
+option go_package = "./store";
+
+service Store{
+    rpc AddParentContainer (AddParentContainerRequest) returns (AddParentContainerResponse);
+    rpc AddChildContainer (AddChildContainerRequest) returns (AddChildContainerResponse);
+    rpc RemoveContainer (RemoveContainerRequest) returns (RemoveContainerResponse);
+    rpc GetAllContainers (GetAllContainersRequest) returns (GetAllContainersResponse);
+    rpc UpdateContainerStats (UpdateContainerStatsRequest) returns (UpdateContainerStatsResponse);
+    rpc GetContainerStats (GetContainerStatsRequest) returns (GetContainerStatsResponse);
+    rpc GetContainerLimits (GetContainerLimitsRequest) returns (GetContainerLimitsResponse);
+    rpc UpdatePortMappings (UpdatePortMappingsRequest) returns (UpdatePortMappingsResponse);
+    rpc GetAllConfigs (GetAllConfigsRequest) returns (GetAllConfigsResponse);
+}
+
+message Container {
+    string containerId = 1;
+    string alias = 2;
+}
+
+message Server {
+    string containerId = 1;
+    uint32 hostPORT = 2;
+    uint32 containerPORT = 3;
+}
+
+message Config {
+    string alias = 1;
+    string image = 2;
+    uint32 minReplicas = 3;
+    uint32 maxReplicas = 4;
+    repeated Server servers = 5;
+}
+
+message AddParentContainerRequest {
+    string alias = 1;
+    Server info = 2;
+    string image = 3;
+    uint32 minReplicas = 4;
+    uint32 maxReplicas = 5;
+}
+
+message AddParentContainerResponse {
+    bool success = 1;
+}
+
+message AddChildContainerRequest {
+    string alias = 1;
+    string containerId = 2;
+    uint32 hostPORT = 3;
+    uint32 containerPORT = 4;
+}
+
+message AddChildContainerResponse {
+    bool success = 1;
+}
+
+message RemoveContainerRequest {
+    string containerId = 1;
+}
+
+message RemoveContainerResponse {
+    bool success = 1;
+}
+
+message GetContainerRequest {
+    string alias = 1;
+}
+
+message GetContainerRespose {
+    string alias = 1;
+    string id = 2;
+    uint32 hostPORT = 3;
+    uint32 containerinit = 4;
+}
+
+message GetAllContainersRequest {}
+
+message GetAllContainersResponse {
+    repeated string containerIds = 1;
+}
+
+message UpdateContainerStatsRequest {
+    string containerId = 1;
+    string alias = 2;
+    string CPU = 3;
+    string MEM = 4;
+}
+
+message UpdateContainerStatsResponse {
+    bool succes = 1;
+}
+
+message GetContainerStatsRequest {
+    string containerId = 1;
+}
+
+message GetContainerStatsResponse {
+    string containerId = 1;
+    string alias = 2;
+    string CPU = 3;
+    string MEM = 4;
+}
+
+message GetContainerLimitsRequest {
+    string alias = 1;
+}
+
+message GetContainerLimitsResponse {
+    uint32 minReplicas = 1;
+    uint32 maxReplicas = 2;
+}
+
+message UpdatePortMappingsRequest {
+    string containerId = 1;
+    uint32 hostPORT = 2;
+    uint32 containerPORT = 3;
+}
+
+message UpdatePortMappingsResponse {
+    string success = 1;
+}
+
+message GetAllConfigsRequest {}
+
+message GetAllConfigsResponse {
+    repeated Config configs = 1;
+}

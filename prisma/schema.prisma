@@ -1,0 +1,28 @@
+datasource db {
+    provider = "postgresql"
+    url      = "postgresql://myuser:mypassword@localhost:5432/store"
+}
+
+generator db {
+    provider = "go run github.com/steebchen/prisma-client-go"
+}
+
+model Config {
+    id          String   @id @default(cuid())
+    alias       String   @unique
+    image       String
+    minReplicas Int
+    maxReplicas Int
+    servers     Server[]
+    createdAt   DateTime @default(now())
+}
+
+model Server {
+    id            String   @id @default(cuid())
+    containerId   String   @unique
+    hostPORT      Int      @unique
+    containerPORT Int
+    configId      String
+    config        Config   @relation(fields: [configId], references: [id])
+    createdAt     DateTime @default(now())
+}
