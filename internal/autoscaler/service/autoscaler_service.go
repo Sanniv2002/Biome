@@ -44,9 +44,6 @@ func parseResourceUsage(usage string) float64 {
 }
 
 func checkResourceUsageAndCommitScaling(servers []*store.Server, presentContainers int, alias string, image string, minReplicas uint32, maxReplicas uint32, a *AutoscalerService) bool {
-	if presentContainers < int(minReplicas) { //Initially Scale Cotainers to minReplicas
-		a.containerClient.ScaleContainer(context.Background(), &containerinit.ScaleContainerRequest{Alias: alias, Present: 1, Target: minReplicas, Image: image})
-	}
 	totalCPUUsage := 0.0
 	totalMEMUsage := 0.0
 	var (

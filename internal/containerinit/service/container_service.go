@@ -253,6 +253,7 @@ func (s *ContainerService) KillConfig(ctx context.Context, req *containerinit.Ki
 			break
 		}
 	}
+
 	return &containerinit.KillConfigResponse{
 		Success: true,
 	}, nil
