@@ -6,6 +6,8 @@ Deploying your containerized server has never been easier. Simply upload your co
 But that's not all. Biome does more than just deploy. It handles scaling, routing, and even those pesky container crashes, so you can focus on what you do best—coding.
 Let Biome handle the heavy lifting. After all, superheroes deserve a break too.
 
+Here’s a pro tip from the creeper whisperers: you should prefer running a single image Biome. It’s like focusing on building one epic castle instead of spreading yourself thin across multiple builds. This way, you'll encounter fewer faults and keep those pesky bugs at bay—no TNT required!
+
 ## Why Biome is fast and lightweight.
 Biome's internal servers are loosely coupled and communicate using the [gRPC](https://grpc.io/) protocol, ensuring efficient and reliable interactions. Biome is designed to maximize concurrency and minimize execution time and CPU idle times by leveraging multiple Go routines. This means your container orchestration is not only swift but also optimized for performance.
 
